@@ -11,7 +11,7 @@ else
 end
 
 # Load custom settings for current domain
-set -l domain (hostname | sed -E 's|.*\.(.*)|\1|')
+set -l domain (host $host | awk '{print $1}' | sed -E 's/$host\.//')
 set -l domain_specific_file $DOTFILEDIR/domain/$domain.fish
 if test -e $domain_specific_file
   source $domain_specific_file
